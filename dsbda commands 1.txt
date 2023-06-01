@@ -1,0 +1,47 @@
+import pandas as pd
+import numpy as np
+
+###########################create data subsetset
+
+df = pd.read_csv(r'C:\Users\ogale\Desktop\dataset_Facebook.csv' , sep=';')
+
+
+df1,df2 = pd.read_csv(r'C:\Users\ogale\Desktop\dataset_Facebook.csv' , sep=';', chunksize=250)
+df1
+df2
+#create data subsets
+
+df1.shape
+df2.shape
+df1.head(1)
+
+####merge data
+
+
+df = pd.concat([df1,df2])
+df
+
+#####sort data
+
+sorting=df.sort_values('Page total likes',ascending=[True])
+
+df.head(1)
+
+########## shape data ####
+
+print(df1.shape)
+print(df2.shape)
+print(df.shape)
+
+
+######### transposing data ##############
+
+pivot_table = pd.pivot_table(df, values='like', index=['Type','Category'], columns=['share'],aggfunc=np.sum)
+print(pivot_table) 
+
+
+#################sorting 
+
+sorting = df.sort_values('Page total likes',ascending=[True])
+sorting
+
